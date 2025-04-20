@@ -1,5 +1,6 @@
 <template>
-  <div>Etape {{ value }} / {{ max }}</div>
+  <div>Etape {{ value + 1 }} / {{ max + 1 }}</div>
+  <progress :value="value" :max="max" />
 </template>
 
 <script setup>
