@@ -9,19 +9,26 @@
             :id="`answer${index}`"
             :name="answer"
             :value="choice"
+            v-model="answer"
           />
           {{ choice }}
         </label>
       </li>
     </ul>
-    <button>Question suivante</button>
+    <button :disabled="!hasAnswer" @click="emits('answer', answer)">
+      Question suivante
+    </button>
   </div>
 </template>
 
 <script setup>
+import { ref, computed } from "vue";
 const props = defineProps({
   question: Object,
 });
+const emits = defineEmits(["answer"]);
+const answer = ref(null);
+const hasAnswer = computed(() => answer.value !== null);
 </script>
 
 <style scoped>
